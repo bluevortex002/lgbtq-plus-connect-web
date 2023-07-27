@@ -1,9 +1,12 @@
 import { Component, createSignal } from "solid-js"
 import { User, userSignal } from "../context"
+import { useNavigate } from "@solidjs/router";
 
 const SignUpPage: Component = () => {
 
 	const [user, setUser] = userSignal
+
+	const navigate = useNavigate();
 
 	const [userToSign, setUserToSign] = createSignal<User>({})
 
@@ -43,7 +46,9 @@ const SignUpPage: Component = () => {
 								</span>
 							</div>
 
-							<input id="password" type="password" name="password" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Password" />
+							<input id="password" type="password" name="password" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Password"
+								onChange={(event) => setUserToSign((user) => { user.password = event.currentTarget.value; return user; })}
+							/>
 						</div>
 					</div>
 					<div class="flex flex-col mb-6">
@@ -57,13 +62,17 @@ const SignUpPage: Component = () => {
 								</svg>
 							</div>
 
-							<input id="nickname" type="text" name="nickname" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Your nickname" />
+							<input id="nickname" type="text" name="nickname" class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400" placeholder="Your nickname"
+								onChange={(event) => setUserToSign((user) => { user.nickname = event.currentTarget.value; return user; })}
+							/>
 						</div>
 					</div>
 					<div class="flex flex-col mb-6">
 						<label for="selfBioSex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What's your biological gender:</label>
 						<div class="relative">
-							<select id="selfBioSex" name="selfBioSex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<select id="selfBioSex" name="selfBioSex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								onChange={(event) => setUserToSign((user) => { user.selfBioSex = event.currentTarget.value; return user; })}
+							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
 								<option value="female">female</option>
@@ -74,7 +83,9 @@ const SignUpPage: Component = () => {
 					<div class="flex flex-col mb-6">
 						<label for="selfPsySex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What's your psychological gender:</label>
 						<div class="relative">
-							<select id="selfPsySex" name="selfPsySex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<select id="selfPsySex" name="selfPsySex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								onChange={(event) => setUserToSign((user) => { user.selfPsySex = event.currentTarget.value; return user; })}
+							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
 								<option value="female">female</option>
@@ -85,7 +96,9 @@ const SignUpPage: Component = () => {
 					<div class="flex flex-col mb-6">
 						<label for="recommendBioSex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What is the biological sex of the person you would like us to recommend to you:</label>
 						<div class="relative">
-							<select id="recommendBioSex" name="recommendBioSex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<select id="recommendBioSex" name="recommendBioSex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								onChange={(event) => setUserToSign((user) => { user.friendBioSex = event.currentTarget.value; return user; })}
+							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
 								<option value="female">female</option>
@@ -96,7 +109,11 @@ const SignUpPage: Component = () => {
 					<div class="flex flex-col mb-6">
 						<label for="recommendPsySex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What is the psychological sex of the person you would like us to recommend to you:</label>
 						<div class="relative">
-							<select id="recommendPsySex" name="recommendPsySex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<select id="recommendPsySex" name="recommendPsySex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+								onChange={(event) => setUserToSign((user) => {
+									user.friendPsySex = event.currentTarget.value; return user;
+								})}
+							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
 								<option value="female">female</option>
@@ -106,7 +123,13 @@ const SignUpPage: Component = () => {
 					</div>
 
 					<div class="flex w-full">
-						<button type="submit" class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in">
+						<button type="submit" class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-blue-600 hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
+							onClick={(event) => {
+								console.log(`current user is ${JSON.stringify(userToSign())}`);
+								setUser(userToSign())
+								navigate("/app/chat");
+							}}
+						>
 							<span class="mr-2 uppercase">Sign up</span>
 							<span>
 								<svg class="h-6 w-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
