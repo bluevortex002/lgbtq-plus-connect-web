@@ -3,32 +3,33 @@ import { createSignal } from "solid-js";
 export type SexOptions = "male" | "female" | "both"
 
 export interface User {
-	email?: String,
-	nickname?: String,
-	username?: String,
-	userId?: String,
-	password?: String,
-	description?: String,
+	email?: string,
+	nickname?: string,
+	username?: string,
+	userId?: string,
+	password?: string,
+	description?: string,
 	selfBioSex?: SexOptions,
 	selfPsySex?: SexOptions,
 	friendBioSex?: SexOptions,
 	friendPsySex?: SexOptions,
-	avatarUrl?: String,
+	avatarUrl?: string,
 	iLikeIt?: boolean
 	itLikeMe?: boolean,
 }
 
 export interface Conversation {
 	isForum: boolean,
-	name: String,
+	name: string,
+	user?: User,
 	messages: Message[]
-	lastTime: String
+	lastTime: string
 }
 
 export interface Message {
-	time: String,
+	time: string,
 	sender: User,
-	message: String,
+	message: string,
 }
 
 const yuandong: User = {
@@ -78,6 +79,7 @@ export const conversationsSignal = createSignal<Conversation[]>([
 	{
 		isForum: false,
 		name: "Yuandong",
+		user: yuandong,
 		messages: [
 			{ time: "2023-07-27 10:54:30", sender: yuandong, message: "In office?" },
 			{ time: "2023-07-27 10:54:32", sender: jinhui, message: "yes" },
