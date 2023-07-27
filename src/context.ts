@@ -102,3 +102,5 @@ export const conversationsSignal = createSignal<Conversation[]>([
 		lastTime: "35 minutes"
 	},
 ])
+
+export const titleSignal = createSignal<string>("LGBTQ+Connect")
