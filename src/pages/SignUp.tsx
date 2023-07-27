@@ -1,5 +1,5 @@
 import { Component, createSignal } from "solid-js"
-import { User, userSignal } from "../context"
+import { SexOptions, User, userSignal } from "../context"
 import { useNavigate } from "@solidjs/router";
 
 const SignUpPage: Component = () => {
@@ -71,7 +71,7 @@ const SignUpPage: Component = () => {
 						<label for="selfBioSex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What's your biological gender:</label>
 						<div class="relative">
 							<select id="selfBioSex" name="selfBioSex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-								onChange={(event) => setUserToSign((user) => { user.selfBioSex = event.currentTarget.value; return user; })}
+								onChange={(event) => setUserToSign((user) => { user.selfBioSex = event.currentTarget.value as SexOptions; return user; })}
 							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
@@ -84,7 +84,7 @@ const SignUpPage: Component = () => {
 						<label for="selfPsySex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What's your psychological gender:</label>
 						<div class="relative">
 							<select id="selfPsySex" name="selfPsySex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-								onChange={(event) => setUserToSign((user) => { user.selfPsySex = event.currentTarget.value; return user; })}
+								onChange={(event) => setUserToSign((user) => { user.selfPsySex = event.currentTarget.value as SexOptions; return user; })}
 							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
@@ -97,7 +97,7 @@ const SignUpPage: Component = () => {
 						<label for="recommendBioSex" class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600">What is the biological sex of the person you would like us to recommend to you:</label>
 						<div class="relative">
 							<select id="recommendBioSex" name="recommendBioSex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-								onChange={(event) => setUserToSign((user) => { user.friendBioSex = event.currentTarget.value; return user; })}
+								onChange={(event) => setUserToSign((user) => { user.friendBioSex = event.currentTarget.value as SexOptions; return user; })}
 							>
 								<option selected>Choose one option</option>
 								<option value="male">male</option>
@@ -111,7 +111,7 @@ const SignUpPage: Component = () => {
 						<div class="relative">
 							<select id="recommendPsySex" name="recommendPsySex" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 								onChange={(event) => setUserToSign((user) => {
-									user.friendPsySex = event.currentTarget.value; return user;
+									user.friendPsySex = event.currentTarget.value as SexOptions; return user;
 								})}
 							>
 								<option selected>Choose one option</option>

@@ -1,5 +1,7 @@
 import { createSignal } from "solid-js";
 
+export type SexOptions = "male" | "female" | "both"
+
 export interface User {
 	email?: String,
 	nickname?: String,
@@ -7,10 +9,10 @@ export interface User {
 	userId?: String,
 	password?: String,
 	description?: String,
-	selfBioSex?: "male" | "female" | "both",
-	selfPsySex?: "male" | "female" | "both",
-	friendBioSex?: "male" | "female" | "both",
-	friendPsySex?: "male" | "female" | "both",
+	selfBioSex?: SexOptions,
+	selfPsySex?: SexOptions,
+	friendBioSex?: SexOptions,
+	friendPsySex?: SexOptions,
 	avatarUrl?: String,
 	iLikeIt?: boolean
 	itLikeMe?: boolean,
