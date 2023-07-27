@@ -10,6 +10,8 @@ import SignUpPage from './pages/SignUp';
 import ChatPage from './pages/Chat';
 import RecommendPage from './pages/Recommend';
 import ChatDetailsPage from './pages/ChatDetails';
+import ContactsPage from './pages/Contacts';
+import SettingsPage from './pages/Settings';
 
 const root = document.getElementById('root');
 
@@ -29,7 +31,9 @@ render(
         <Route path="/chat-details" component={ChatDetailsPage} />
         <Route path="/app" component={App}>
           <Route path="/chat" component={ChatPage} />
+          <Route path="/contacts" component={ContactsPage} />
           <Route path="/recommend" component={RecommendPage} />
+          <Route path="/settings" component={SettingsPage} />
         </Route>
       </Routes>
     </Router>
