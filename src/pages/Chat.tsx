@@ -1,10 +1,13 @@
 import { For, type Component } from 'solid-js';
-import { conversationsSignal } from '../context';
+import { conversationsSignal, currConvSignal } from '../context';
 import forum from "../svg/forum.svg"
+import { useNavigate } from '@solidjs/router';
 
 const ChatPage: Component = () => {
 
 	const [conversations, setConversations] = conversationsSignal
+	const navigate = useNavigate();
+	const [currConv, setCurrConv] = currConvSignal
 
 	return (
 		<div class="container mx-auto">
@@ -29,7 +32,10 @@ const ChatPage: Component = () => {
 						<li>
 							<For each={conversations()}>
 								{(conv) => <a class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none"
-								// onclick={}
+									onclick={(ev) => {
+										setCurrConv(conv)
+										navigate("/chat-details")
+									}}
 								>
 									<img class="object-cover w-10 h-10 rounded-lg" src={conv.user?.avatarUrl ?? forum} alt="username" />
 									<div class="w-full pb-2">
@@ -45,7 +51,7 @@ const ChatPage: Component = () => {
 					</ul>
 				</div>
 
-				<div class="hidden lg:col-span-2 lg:block">
+				{/* <div class="hidden lg:col-span-2 lg:block">
 					<div class="w-full">
 						<div class="relative flex items-center p-3 border-b border-gray-300">
 							<img class="object-cover w-10 h-10 rounded-full"
@@ -115,7 +121,7 @@ const ChatPage: Component = () => {
 							</button>
 						</div>
 					</div>
-				</div>
+				</div> */}
 			</div>
 		</div>
 	);

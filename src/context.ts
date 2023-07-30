@@ -74,8 +74,7 @@ const jinhui: User = {
 	avatarUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F74ecc700-cd6f-4f7d-b44d-231ae09167ff%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1693050304&t=773c92062647f813c6f1df19f3e91339"
 }
 
-export const userSignal = createSignal<User>(jinhui)
-export const conversationsSignal = createSignal<Conversation[]>([
+const conversationList = [
 	{
 		isForum: false,
 		name: "Yuandong",
@@ -103,6 +102,11 @@ export const conversationsSignal = createSignal<Conversation[]>([
 		],
 		lastTime: "35 minutes"
 	},
-])
+]
+
+export const userSignal = createSignal<User>(jinhui)
+export const conversationsSignal = createSignal<Conversation[]>(conversationList)
 
 export const titleSignal = createSignal<string>("LGBTQ+Connect")
+
+export const currConvSignal = createSignal<Conversation>(conversationList[0])
