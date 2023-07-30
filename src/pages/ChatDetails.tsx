@@ -1,13 +1,15 @@
 import { For, type Component, createSignal } from 'solid-js';
 
 import back from '../svg/back.svg';
-import { Message, conversationsStore, currConvStore, userSignal } from '../context';
+import { Message, convsStore, convIdxSignal, userSignal } from '../context';
 import { useNavigate } from '@solidjs/router';
 
 const ChatDetailsPage: Component = () => {
 
-	const [currConv, setCurrConv] = currConvStore
+	const [convIdx, setConvIdx] = convIdxSignal
 	const [user, setUser] = userSignal
+	const [convs, setConvs] = convsStore
+
 
 	const navigate = useNavigate()
 
@@ -34,13 +36,13 @@ const ChatDetailsPage: Component = () => {
 							onClick={(ev) => navigate("/app/chat")}
 						/>
 						{/* <img src={currConv().user?.avatarUrl} class="h-12 mr-3 rounded-full" alt="Flowbite Logo" /> */}
-						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{currConv.isForum ? currConv.name : currConv.user?.nickname}</span>
+						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{convs[convIdx()].isForum ? convIdx.name : convs[convIdx()].user?.nickname}</span>
 					</a>
 				</div>
 			</nav>
 
 			<div ref={msgBox} class="container flex-1 px-1 overflow-y-scroll">
-				<For each={currConv.messages}>
+				<For each={convs[convIdx()].messages}>
 					{
 						(msg) => {
 
@@ -94,9 +96,8 @@ const ChatDetailsPage: Component = () => {
 								sender: user(),
 								message: currInput(),
 							}
-							let messages = [...currConv.messages, newMsg];
-							setCurrConv((conv) => ({ messages }));
-							console.log(currConv);
+							setConvs(convIdx(), "messages", convs[convIdx()].messages.length, newMsg)
+							console.log(convIdx);
 
 							setCurrInput("")
 

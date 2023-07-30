@@ -101,8 +101,8 @@ const conversationList = [
 ]
 
 export const userSignal = createSignal<User>(jinhui)
-export const conversationsStore = createStore<Conversation[]>(conversationList)
+export const convsStore = createStore<Conversation[]>(conversationList)
 
 export const titleSignal = createSignal<string>("LGBTQ+Connect")
 
-export const currConvStore = createStore<Conversation>(conversationList[0])
+export const convIdxSignal = createSignal<number>(0)

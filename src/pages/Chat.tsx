@@ -1,13 +1,13 @@
 import { For, type Component } from 'solid-js';
-import { conversationsStore, currConvStore } from '../context';
+import { convsStore, convIdxSignal } from '../context';
 import forum from "../svg/forum.svg"
 import { useNavigate } from '@solidjs/router';
 
 const ChatPage: Component = () => {
 
-	const [conversations, setConversations] = conversationsStore
+	const [conversations, setConversations] = convsStore
 	const navigate = useNavigate();
-	const [currConv, setCurrConv] = currConvStore
+	const [convIdx, setConvIdx] = convIdxSignal
 
 	return (
 		<div class="container mx-auto">
@@ -31,9 +31,9 @@ const ChatPage: Component = () => {
 						<h2 class="my-2 mb-2 ml-2 text-lg text-gray-600">Conversations</h2>
 						<li>
 							<For each={conversations}>
-								{(conv) => <a class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none"
+								{(conv, idx) => <a class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none"
 									onclick={(ev) => {
-										setCurrConv(conv)
+										setConvIdx(idx)
 										navigate("/chat-details")
 									}}
 								>
