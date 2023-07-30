@@ -12,53 +12,56 @@ const ChatDetailsPage: Component = () => {
 	const navigate = useNavigate()
 
 	const colorList = [
-		"chat-bubble chat-bubble-primary",
-		"chat-bubble chat-bubble-secondary",
-		"chat-bubble chat-bubble-accent",
-		"chat-bubble chat-bubble-info",
-		"chat-bubble chat-bubble-success",
-		"chat-bubble chat-bubble-warning",
-		"chat-bubble chat-bubble-error",
+		"chat-bubble chat-bubble-primary drop-shadow-md",
+		"chat-bubble chat-bubble-secondary drop-shadow-md",
+		"chat-bubble chat-bubble-accent drop-shadow-md",
+		"chat-bubble chat-bubble-info drop-shadow-md",
+		"chat-bubble chat-bubble-success drop-shadow-md",
+		"chat-bubble chat-bubble-warning drop-shadow-md",
+		"chat-bubble chat-bubble-error drop-shadow-md",
 	]
 
 	return (
-		<div class="container px-1">
-			<nav class="bg-white border-gray-200 dark:bg-gray-900">
+		<div class="container">
+			<nav class="drop-shadow-xl bg-white border-gray-200 dark:bg-gray-900">
 				<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 					<a class="flex items-center">
 						<img src={back} class="h-8 mr-3" alt="Flowbite Logo"
 							onClick={(ev) => navigate("/app/chat")}
 						/>
-						<img src="https://flowbite.com/docs/images/logo.svg" class="h-8 mr-3" alt="Flowbite Logo" />
+						<img src={currConv().user?.avatarUrl} class="h-12 mr-3 rounded-full" alt="Flowbite Logo" />
 						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{currConv().isForum ? currConv().name : currConv().user?.nickname}</span>
 					</a>
 				</div>
 			</nav>
 
-			<For each={currConv().messages}>
-				{
-					(msg) => {
+			<div class="container px-1">
+				<For each={currConv().messages}>
+					{
+						(msg) => {
 
-						return <div class={msg.sender.userId === user().userId ? "chat chat-end" : "chat chat-start"}>
-							<div class="chat-image avatar">
-								<div class="w-10 rounded-lg">
-									<img src={msg.sender.avatarUrl} />
+							return <div class={msg.sender.userId === user().userId ? "chat chat-end" : "chat chat-start"}>
+								<div class="chat-image avatar">
+									<div class="w-10 rounded-lg">
+										<img src={msg.sender.avatarUrl} />
+									</div>
+								</div>
+								<div class="chat-header">
+									{msg.sender.nickname}
+									<time class="text-xs opacity-50 pl-1">{msg.time}</time>
+								</div>
+								<div class={colorList[Math.floor(Math.random() * colorList.length)]}>{msg.message}</div>
+								<div class="chat-footer opacity-50">
+									Delivered
 								</div>
 							</div>
-							<div class="chat-header">
-								{msg.sender.nickname}
-								<time class="text-xs opacity-50 pl-1">{msg.time}</time>
-							</div>
-							<div class={colorList[Math.floor(Math.random() * colorList.length)]}>{msg.message}</div>
-							<div class="chat-footer opacity-50">
-								Delivered
-							</div>
-						</div>
+						}
 					}
-				}
-			</For>
+				</For>
+			</div>
 
-			<div class="fixed bottom-0 left-0 z-50 w-full h-16 flex flex-row items-center rounded-xl px-4 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+
+			<div class="fixed bottom-0 left-0 z-50 w-full h-16 flex flex-row items-center px-4 drop-shadow-md bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
 				<div>
 					<button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

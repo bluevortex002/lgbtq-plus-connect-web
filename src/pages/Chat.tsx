@@ -23,7 +23,7 @@ const ChatPage: Component = () => {
 								</svg>
 							</span>
 							<input type="search" class="block w-full py-2 pl-10 bg-gray-100 rounded outline-none" name="search"
-								placeholder="Search" required />
+								placeholder="Search in chat history" required />
 						</div>
 					</div>
 

@@ -94,11 +94,6 @@ const conversationList = [
 		name: "Humble",
 		messages: [
 			{ time: "2023-07-20 10:54:30", sender: jinhui, message: "Welcome Yuandong and Real, let's join the Pride Hackathon!" },
-			{ time: "2023-07-27 10:54:32", sender: jinhui, message: "yes" },
-			{ time: "2023-07-27 10:54:34", sender: yuandong, message: "12:05" },
-			{ time: "2023-07-27 10:54:36", sender: jinhui, message: "ok" },
-			{ time: "2023-07-27 12:05:36", sender: yuandong, message: "go?" },
-			{ time: "2023-07-27 12:05:37", sender: jinhui, message: "gogogo" },
 		],
 		lastTime: "35 minutes"
 	},
