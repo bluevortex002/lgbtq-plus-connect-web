@@ -1,4 +1,5 @@
 import { createSignal } from "solid-js";
+import { createStore } from "solid-js/store";
 
 export type SexOptions = "male" | "female" | "both"
 
@@ -100,8 +101,8 @@ const conversationList = [
 ]
 
 export const userSignal = createSignal<User>(jinhui)
-export const conversationsSignal = createSignal<Conversation[]>(conversationList)
+export const conversationsStore = createStore<Conversation[]>(conversationList)
 
 export const titleSignal = createSignal<string>("LGBTQ+Connect")
 
-export const currConvSignal = createSignal<Conversation>(conversationList[0])
+export const currConvStore = createStore<Conversation>(conversationList[0])

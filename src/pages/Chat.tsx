@@ -1,13 +1,13 @@
 import { For, type Component } from 'solid-js';
-import { conversationsSignal, currConvSignal } from '../context';
+import { conversationsStore, currConvStore } from '../context';
 import forum from "../svg/forum.svg"
 import { useNavigate } from '@solidjs/router';
 
 const ChatPage: Component = () => {
 
-	const [conversations, setConversations] = conversationsSignal
+	const [conversations, setConversations] = conversationsStore
 	const navigate = useNavigate();
-	const [currConv, setCurrConv] = currConvSignal
+	const [currConv, setCurrConv] = currConvStore
 
 	return (
 		<div class="container mx-auto">
@@ -30,7 +30,7 @@ const ChatPage: Component = () => {
 					<ul class="overflow-auto h-[32rem]">
 						<h2 class="my-2 mb-2 ml-2 text-lg text-gray-600">Conversations</h2>
 						<li>
-							<For each={conversations()}>
+							<For each={conversations}>
 								{(conv) => <a class="flex items-center px-3 py-2 text-sm transition duration-150 ease-in-out border-b border-gray-300 cursor-pointer hover:bg-gray-100 focus:outline-none"
 									onclick={(ev) => {
 										setCurrConv(conv)

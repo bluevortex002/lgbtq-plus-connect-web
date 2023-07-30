@@ -1,12 +1,12 @@
 import { For, type Component, createSignal } from 'solid-js';
 
 import back from '../svg/back.svg';
-import { Message, currConvSignal, userSignal } from '../context';
+import { Message, conversationsStore, currConvStore, userSignal } from '../context';
 import { useNavigate } from '@solidjs/router';
 
 const ChatDetailsPage: Component = () => {
 
-	const [currConv, setCurrConv] = currConvSignal
+	const [currConv, setCurrConv] = currConvStore
 	const [user, setUser] = userSignal
 
 	const navigate = useNavigate()
@@ -23,6 +23,8 @@ const ChatDetailsPage: Component = () => {
 
 	const [currInput, setCurrInput] = createSignal("")
 
+	let msgBox: HTMLDivElement | undefined
+
 	return (
 		<div class="containern flex flex-col h-screen overflow-hidden">
 			<nav class="drop-shadow-xl bg-white border-gray-200 dark:bg-gray-900">
@@ -32,13 +34,13 @@ const ChatDetailsPage: Component = () => {
 							onClick={(ev) => navigate("/app/chat")}
 						/>
 						{/* <img src={currConv().user?.avatarUrl} class="h-12 mr-3 rounded-full" alt="Flowbite Logo" /> */}
-						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{currConv().isForum ? currConv().name : currConv().user?.nickname}</span>
+						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{currConv.isForum ? currConv.name : currConv.user?.nickname}</span>
 					</a>
 				</div>
 			</nav>
 
-			<div class="container flex-1 px-1 overflow-y-scroll">
-				<For each={currConv().messages}>
+			<div ref={msgBox} class="container flex-1 px-1 overflow-y-scroll">
+				<For each={currConv.messages}>
 					{
 						(msg) => {
 
@@ -74,6 +76,7 @@ const ChatDetailsPage: Component = () => {
 				<div class="flex-grow ml-4">
 					<div class="relative w-full">
 						<input type="text" class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+							value={currInput()}
 							onChange={(ev) => setCurrInput(ev.currentTarget.value)}
 						/>
 						<button class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
@@ -86,16 +89,18 @@ const ChatDetailsPage: Component = () => {
 				<div class="ml-4">
 					<button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
 						onClick={(ev) => {
-							setCurrConv((conv) => {
-								let newMsg: Message = {
-									time: Date.now().toString(),
-									sender: user(),
-									message: currInput(),
-								}
-								conv.messages.push(newMsg)
-								return conv
-							})
+							let newMsg: Message = {
+								time: Date.now().toString(),
+								sender: user(),
+								message: currInput(),
+							}
+							let messages = [...currConv.messages, newMsg];
+							setCurrConv((conv) => ({ messages }));
+							console.log(currConv);
+
 							setCurrInput("")
+
+							msgBox!.scrollTop = msgBox?.scrollHeight!!
 						}}
 					>
 						<span>Send</span>
