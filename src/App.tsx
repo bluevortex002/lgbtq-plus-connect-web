@@ -23,7 +23,7 @@ const App: Component = () => {
   }
 
   return (
-    <div class="container">
+    <div class="container flex flex-col h-screen overflow-hidden">
       <nav class="drop-shadow-xl bg-white border-gray-200 dark:bg-gray-900">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
           <a href="https://flowbite.com/" class="flex items-center">
@@ -60,7 +60,9 @@ const App: Component = () => {
         </div>
       </nav>
 
-      <Outlet />
+      <div class="flex-1 overflow-y-scroll">
+        <Outlet />
+      </div>
 
       <div class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
         <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
