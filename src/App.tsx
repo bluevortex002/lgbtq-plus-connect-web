@@ -66,10 +66,11 @@ const App: Component = () => {
 
       <div class="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
         <div class="grid h-full max-w-lg grid-cols-4 mx-auto font-medium">
-          <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
+
+          <button type="button" class={`inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${title() === "LGBTQ+Connect" ? "bg-blue-400" : "bg-white"}`}
             onclick={(ev) => {
               navigate("/app/chat")
-              setTitle("Chat")
+              setTitle("LGBTQ+Connect")
             }}
           >
             <svg class="w-7 h-7 mb-1 text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24">
@@ -77,7 +78,9 @@ const App: Component = () => {
             </svg>
             <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Chat</span>
           </button>
-          <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
+
+
+          <button type="button" class={`inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${title() === "Contacts" ? "bg-blue-400" : "bg-white"}`}
             onclick={(ev) => {
               navigate("/app/contacts")
               setTitle("Contacts")
@@ -94,7 +97,9 @@ const App: Component = () => {
             </svg>
             <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Contacts</span>
           </button>
-          <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
+
+
+          <button type="button" class={`inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${title() === "Recommend" ? "bg-blue-400" : "bg-white"}`}
             onclick={(ev) => {
               navigate("/app/recommend")
               setTitle("Recommend")
@@ -104,7 +109,10 @@ const App: Component = () => {
               <path d="M119.9 52.88a1.993 1.993 0 0 0-1.61-1.37l-5.18-.74-2.32-4.66a1.998 1.998 0 0 0-3.58 0l-2.32 4.66-5.18.74a2.006 2.006 0 0 0-1.1 3.42l3.74 3.62-.88 5.11a1.991 1.991 0 0 0 2.89 2.11l4.64-2.42 4.64 2.42a1.993 1.993 0 0 0 2.1-.15 1.994 1.994 0 0 0 .79-1.96l-.88-5.11 3.74-3.62a1.983 1.983 0 0 0 .51-2.05zm-7.79 3.53a2.001 2.001 0 0 0-.58 1.78l.37 2.17-1.97-1.04a2.075 2.075 0 0 0-1.86 0l-1.97 1.04.37-2.17a2.001 2.001 0 0 0-.58-1.78l-1.57-1.52 2.18-.31a2.04 2.04 0 0 0 1.51-1.09l.99-2 .99 2a2.04 2.04 0 0 0 1.5 1.09l2.19.31zM51.99 91.07A6.37 6.37 0 0 0 53 87.62a5.975 5.975 0 0 0-6.23-5.98h-6.29a14.928 14.928 0 0 0 .38-3.55c-.22-2.23-.74-7.45-4.75-9.4a6.238 6.238 0 0 0-6.31.4q-.36.255-.69.54c-2.39 2.12-2.26 4.97-2.19 6.5.01.22.02 1.69.02 1.69-.47 1.22-2.29 4.39-3.1 5.81h-1.88A1.988 1.988 0 0 0 20 82H10a2.006 2.006 0 0 0-2 2v22a2.006 2.006 0 0 0 2 2h10a1.995 1.995 0 0 0 1.84-1.23c.26 0 2.72-.03 2.83-.03a8.129 8.129 0 0 0 2.2 1.09 3.974 3.974 0 0 0 1.14.16l15.45.01a6.302 6.302 0 0 0 6.23-6.35q0-.33-.03-.66a6.42 6.42 0 0 0 1.41-4.02 6.234 6.234 0 0 0-.09-1.06 6.375 6.375 0 0 0 1.13-3.63 6.054 6.054 0 0 0-.12-1.21zm-5.12-1.11c-.13.01-.21.11-.04.21a2.387 2.387 0 0 1 1.28 2.11 2.294 2.294 0 0 1-2.24 2.35s-.32.1-.05.23a2.357 2.357 0 0 1 1.25 2.11 2.29 2.29 0 0 1-2.23 2.34h-.21c-.09 0-.19.03-.2.13a.142.142 0 0 0 .07.14 2.425 2.425 0 0 1 1.19 2.07 2.292 2.292 0 0 1-2.23 2.35l-15.45-.01c-.78-.23-1.36-.84-2.1-1.13a6.78 6.78 0 0 0-1.67-.12c-.67 0-1.45.02-2.24.03V87.63l3.33-.01h.01a1.476 1.476 0 0 0 1.22-.7c1.14-2.01 4.38-7.43 4.38-8.65v-1.48c0-1.46-.36-3.12.82-4.16a2.314 2.314 0 0 1 1.39-.63h.11a2.492 2.492 0 0 1 1.1.28c1.9.93 2.33 4.28 2.52 6.2a35.382 35.382 0 0 1-1.24 6.19c-.27.95 1.05.96 1.05.96l10.08.01A1.998 1.998 0 0 1 49 87.62a2.3 2.3 0 0 1-2.13 2.34z" ></path><path d="M112.74 69.7h-.01a5.888 5.888 0 0 1-.95-.38L109 67.86l-2.79 1.46a6.064 6.064 0 0 1-2.77.68 6.004 6.004 0 0 1-5.91-7.02l.52-3.03-2.22-2.15a6.025 6.025 0 0 1-1.54-6.15 5.566 5.566 0 0 1 .53-1.16 22.204 22.204 0 0 0-4.64-.49h-4.03a8.821 8.821 0 0 1-.87-6.52A20.332 20.332 0 0 0 91 29.38V12.39A12.532 12.532 0 0 0 78.36 0H61.64A12.553 12.553 0 0 0 49 12.43v16.95a20.324 20.324 0 0 0 5.71 14.09 8.836 8.836 0 0 1-.86 6.53h-4.03a22.879 22.879 0 0 0-21.44 15.29 10.07 10.07 0 0 1 4.89-1.27 10.587 10.587 0 0 1 4.6 1.07c4.05 1.98 5.68 5.81 6.4 8.91h65.47a10.454 10.454 0 0 1 3.26.53v-1.29a24.383 24.383 0 0 0-.26-3.54zM81.82 50.68 70 64.2 58.18 50.68c-.05-.05-.11-.1-.17-.15a12.641 12.641 0 0 0 .9-3.67 21.136 21.136 0 0 0 22.17 0 12.992 12.992 0 0 0 .91 3.67c-.06.05-.12.1-.17.15zm32.84 29.68a6.248 6.248 0 0 0-4.92-2.36H49.5a9.892 9.892 0 0 1 7.5 9.62 10.444 10.444 0 0 1-.9 4.24c0 .14.01.28.01.42a10.428 10.428 0 0 1-1.04 4.55v.14a10.486 10.486 0 0 1-1.39 5.2A10.296 10.296 0 0 1 43.46 112l-10.09-.01v.01h-3.81l2.29 11.19a6.208 6.208 0 0 0 6.1 4.81h64.09a6.223 6.223 0 0 0 6.12-4.86l7.68-37.6a6.084 6.084 0 0 0-1.18-5.18zM70 108a5 5 0 1 1 5-5 5.002 5.002 0 0 1-5 5z" ></path></svg>
             <span class="text-sm text-gray-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-500">Recommend</span>
           </button>
-          <button type="button" class="inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group"
+
+
+
+          <button type="button" class={`inline-flex flex-col items-center justify-center px-5 hover:bg-gray-50 dark:hover:bg-gray-800 group ${title() === "Settings" ? "bg-blue-400" : "bg-white"}`}
             onclick={(ev) => {
               navigate("/app/settings")
               setTitle("Settings")
@@ -117,7 +125,7 @@ const App: Component = () => {
           </button>
         </div>
       </div>
-    </div>
+    </div >
   );
 };
 
