@@ -19,11 +19,8 @@ const App: Component = () => {
   const [user, setUser] = userSignal
 
   if (user() === undefined) {
-    console.log(user());
-
     navigate("/login", { replace: true });
   }
-  console.log(user());
 
   return (
     <div class="container">

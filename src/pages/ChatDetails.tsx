@@ -1,7 +1,7 @@
-import { For, type Component } from 'solid-js';
+import { For, type Component, createSignal } from 'solid-js';
 
 import back from '../svg/back.svg';
-import { currConvSignal, userSignal } from '../context';
+import { Message, currConvSignal, userSignal } from '../context';
 import { useNavigate } from '@solidjs/router';
 
 const ChatDetailsPage: Component = () => {
@@ -21,21 +21,23 @@ const ChatDetailsPage: Component = () => {
 		"chat-bubble chat-bubble-error drop-shadow-md",
 	]
 
+	const [currInput, setCurrInput] = createSignal("")
+
 	return (
-		<div class="container">
+		<div class="containern flex flex-col h-screen overflow-hidden">
 			<nav class="drop-shadow-xl bg-white border-gray-200 dark:bg-gray-900">
 				<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
 					<a class="flex items-center">
 						<img src={back} class="h-8 mr-3" alt="Flowbite Logo"
 							onClick={(ev) => navigate("/app/chat")}
 						/>
-						<img src={currConv().user?.avatarUrl} class="h-12 mr-3 rounded-full" alt="Flowbite Logo" />
+						{/* <img src={currConv().user?.avatarUrl} class="h-12 mr-3 rounded-full" alt="Flowbite Logo" /> */}
 						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{currConv().isForum ? currConv().name : currConv().user?.nickname}</span>
 					</a>
 				</div>
 			</nav>
 
-			<div class="container px-1">
+			<div class="container flex-1 px-1 overflow-y-scroll">
 				<For each={currConv().messages}>
 					{
 						(msg) => {
@@ -61,7 +63,7 @@ const ChatDetailsPage: Component = () => {
 			</div>
 
 
-			<div class="fixed bottom-0 left-0 z-50 w-full h-16 flex flex-row items-center px-4 drop-shadow-md bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
+			<div class="w-full bottom-0 left-0 z-50 h-16 flex flex-row items-center px-4 drop-shadow-md bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
 				<div>
 					<button class="flex items-center justify-center text-gray-400 hover:text-gray-600">
 						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +73,9 @@ const ChatDetailsPage: Component = () => {
 				</div>
 				<div class="flex-grow ml-4">
 					<div class="relative w-full">
-						<input type="text" class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10" />
+						<input type="text" class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
+							onChange={(ev) => setCurrInput(ev.currentTarget.value)}
+						/>
 						<button class="absolute flex items-center justify-center h-full w-12 right-0 top-0 text-gray-400 hover:text-gray-600">
 							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -80,10 +84,23 @@ const ChatDetailsPage: Component = () => {
 					</div>
 				</div>
 				<div class="ml-4">
-					<button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0">
+					<button class="flex items-center justify-center bg-indigo-500 hover:bg-indigo-600 rounded-xl text-white px-4 py-1 flex-shrink-0"
+						onClick={(ev) => {
+							setCurrConv((conv) => {
+								let newMsg: Message = {
+									time: Date.now().toString(),
+									sender: user(),
+									message: currInput(),
+								}
+								conv.messages.push(newMsg)
+								return conv
+							})
+							setCurrInput("")
+						}}
+					>
 						<span>Send</span>
 						<span class="ml-2">
-							<svg class="w-4 h-4 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+							<svg class="w-5 h-5 transform rotate-45 -mt-px" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
 								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
 							</svg>
 						</span>
