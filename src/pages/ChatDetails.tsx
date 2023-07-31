@@ -38,7 +38,7 @@ const ChatDetailsPage: Component = () => {
 							onClick={(ev) => navigate("/app/chat")}
 						/>
 						{/* <img src={currConv().user?.avatarUrl} class="h-12 mr-3 rounded-full" alt="Flowbite Logo" /> */}
-						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{convs[convIdx()].isForum ? convIdx.name : convs[convIdx()].user?.nickname}</span>
+						<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">{convs[convIdx()].forum?.name ?? convs[convIdx()].user?.nickname}</span>
 					</a>
 				</div>
 			</nav>

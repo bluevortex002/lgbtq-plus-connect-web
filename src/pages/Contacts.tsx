@@ -27,12 +27,10 @@ const ContactsPage: Component = () => {
 			<For each={friends}>
 				{(usr) => <div class="flex flex-row justify-start my-2 bg-white shadow-md"
 					onclick={(ev) => {
-						let existingConv = convs.filter((conv) => !conv.isForum && conv.user?.userId === usr.userId)
+						let existingConv = convs.filter((conv) => conv.user?.userId === usr.userId)
 						if (existingConv.length === 0) {
 							let idx = convs.length
 							setConvs(idx, {
-								isForum: false,
-								name: usr.nickname,
 								user: usr,
 								messages: [],
 								lastTime: ""

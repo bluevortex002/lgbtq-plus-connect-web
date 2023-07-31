@@ -1,5 +1,6 @@
-import { Component, For } from "solid-js";
-import { forumStore, userSignal } from "../context";
+import { Component, For, createSignal } from "solid-js";
+import { convIdxSignal, convsStore, forumStore, userSignal } from "../context";
+import { useNavigate } from "@solidjs/router";
 
 
 const SearchPage: Component = () => {
@@ -7,6 +8,12 @@ const SearchPage: Component = () => {
 	const [user, setUser] = userSignal
 
 	const [forums, setForums] = forumStore
+
+	const [searchedForum, setSearchedForum] = createSignal(forums)
+
+	const navigate = useNavigate()
+	const [convs, setConvs] = convsStore
+	const [convIdx, setConvIdx] = convIdxSignal
 
 	return <div class="container">
 		<div class="mx-3 my-3">
@@ -18,12 +25,39 @@ const SearchPage: Component = () => {
 					</svg>
 				</span>
 				<input type="search" class="block w-full py-2 pl-10 bg-gray-100 rounded outline-none" name="search"
-					placeholder="Search users or forum" required />
+					placeholder="Search users or forum" required
+					onInput={(ev) => {
+						const word = ev.currentTarget.value.toLowerCase()
+						console.log("word", word);
+						if (word.length === 0) {
+							setSearchedForum(forums)
+						} else {
+							const result = forums.filter((forum) => forum.name.toLocaleLowerCase().indexOf(word) > 0 || forum.desc.toLowerCase().indexOf(word) > 0)
+							setSearchedForum(result)
+						}
+					}}
+				/>
 			</div>
 		</div>
 		<div class="flex flex-col">
-			<For each={forums}>
-				{(forum) => <div class="flex flex-row justify-start my-2 gap-2 bg-white shadow-md">
+			<For each={searchedForum()}>
+				{(forum) => <div class="flex flex-row justify-start my-2 gap-2 bg-white shadow-md"
+					onclick={(ev) => {
+						let existingConv = convs.filter((conv) => conv.forum?.name === forum.name)
+						if (existingConv.length === 0) {
+							let idx = convs.length
+							setConvs(idx, {
+								forum,
+								messages: [],
+								lastTime: "just now"
+							})
+							setConvIdx(idx)
+						} else {
+							setConvIdx(convs.indexOf(existingConv[0]))
+						}
+						navigate("/chat-details")
+					}}
+				>
 					<div class="avatar m-1">
 						<div class="w-24 rounded">
 							<img src={forum.pic} />

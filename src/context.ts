@@ -21,9 +21,8 @@ export interface User {
 }
 
 export interface Conversation {
-	isForum: boolean,
-	name: string,
 	user?: User,
+	forum?: Forum,
 	messages: Message[]
 	lastTime: string
 }
@@ -85,31 +84,6 @@ export const jinhui: User = {
 	avatarUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F74ecc700-cd6f-4f7d-b44d-231ae09167ff%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1693050304&t=773c92062647f813c6f1df19f3e91339"
 }
 
-const conversationList = [
-	{
-		isForum: false,
-		name: "Yuandong",
-		user: yuandong,
-		messages: [
-			{ time: "2023-07-27 10:54:30", sender: yuandong, message: "In office?" },
-			{ time: "2023-07-27 10:54:32", sender: jinhui, message: "yes" },
-			{ time: "2023-07-27 10:54:34", sender: yuandong, message: "12:05" },
-			{ time: "2023-07-27 10:54:36", sender: jinhui, message: "ok" },
-			{ time: "2023-07-27 12:05:36", sender: yuandong, message: "go?" },
-			{ time: "2023-07-27 12:05:37", sender: jinhui, message: "gogogo" },
-		],
-		lastTime: "35 minutes"
-	},
-	{
-		isForum: true,
-		name: "Humble",
-		messages: [
-			{ time: "2023-07-20 10:54:30", sender: jinhui, message: "Welcome Yuandong and Real, let's join the Pride Hackathon!" },
-		],
-		lastTime: "35 minutes"
-	},
-]
-
 const forums: Forum[] = [
 	{
 		name: "Legal counseling services",
@@ -126,6 +100,36 @@ const forums: Forum[] = [
 		desc: "A awesome forum while developing the LGBTQ+Connect APP",
 		createdOn: "2017-06-06",
 		members: [jinhui, yuandong, realLi]
+	},
+	{
+		name: "Humble",
+		pic: "https://media.istockphoto.com/id/973419646/vector/rainbow-circle.webp?s=2048x2048&w=is&k=20&c=llSAfDw42KrCFCZTFu8HT7qiE7ylvcC0mATE5HpKuHU=",
+		owner: jinhui,
+		desc: "3 humble people's talking",
+		createdOn: "2023-06-06",
+		members: [jinhui, yuandong, realLi]
+	},
+]
+
+const conversationList: Conversation[] = [
+	{
+		user: yuandong,
+		messages: [
+			{ time: "2023-07-27 10:54:30", sender: yuandong, message: "In office?" },
+			{ time: "2023-07-27 10:54:32", sender: jinhui, message: "yes" },
+			{ time: "2023-07-27 10:54:34", sender: yuandong, message: "12:05" },
+			{ time: "2023-07-27 10:54:36", sender: jinhui, message: "ok" },
+			{ time: "2023-07-27 12:05:36", sender: yuandong, message: "go?" },
+			{ time: "2023-07-27 12:05:37", sender: jinhui, message: "gogogo" },
+		],
+		lastTime: "35 minutes"
+	},
+	{
+		forum: forums[2],
+		messages: [
+			{ time: "2023-07-20 10:54:30", sender: jinhui, message: "Welcome Yuandong and Real, let's join the Pride Hackathon!" },
+		],
+		lastTime: "35 minutes"
 	},
 ]
 

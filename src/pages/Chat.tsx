@@ -37,10 +37,10 @@ const ChatPage: Component = () => {
 										navigate("/chat-details")
 									}}
 								>
-									<img class="object-cover w-10 h-10 rounded-lg" src={conv.user?.avatarUrl ?? forum} alt="username" />
+									<img class="object-cover w-10 h-10 rounded-lg" src={conv.user?.avatarUrl ?? conv.forum?.pic} alt="username" />
 									<div class="w-full pb-2">
 										<div class="flex justify-between">
-											<span class="block ml-2 font-semibold text-gray-600">{conv.name}</span>
+											<span class="block ml-2 font-semibold text-gray-600">{conv.forum?.name ?? conv.user?.nickname}</span>
 											<span class="block ml-2 text-sm text-gray-600">{conv.lastTime}</span>
 										</div>
 										<span class="block ml-2 text-sm text-gray-600">{conv.messages.length > 0 ? conv.messages[conv.messages.length - 1]?.message : ""}</span>
