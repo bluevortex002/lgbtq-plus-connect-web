@@ -12,6 +12,7 @@ import RecommendPage from './pages/Recommend';
 import ChatDetailsPage from './pages/ChatDetails';
 import ContactsPage from './pages/Contacts';
 import SettingsPage from './pages/Settings';
+import SearchPage from './pages/Search';
 
 const root = document.getElementById('root');
 
@@ -29,6 +30,7 @@ render(
         <Route path="/login" component={LoginPage} />
         <Route path="/signup" component={SignUpPage} />
         <Route path="/chat-details" component={ChatDetailsPage} />
+        <Route path="/search" component={SearchPage} />
         <Route path="/app" component={App}>
           <Route path="/chat" component={ChatPage} />
           <Route path="/contacts" component={ContactsPage} />

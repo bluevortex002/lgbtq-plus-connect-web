@@ -15,8 +15,8 @@ export interface User {
 	friendBioSex?: SexOptions,
 	friendPsySex?: SexOptions,
 	avatarUrl?: string,
-	iLikeIt?: boolean
-	itLikeMe?: boolean,
+	like?: boolean
+	liked?: boolean,
 	distance?: number
 }
 
@@ -40,6 +40,7 @@ export interface Forum {
 	owner: User,
 	desc: string,
 	createdOn: string,
+	members: User[],
 }
 
 const yuandong: User = {
@@ -115,7 +116,16 @@ const forums: Forum[] = [
 		pic: "https://img2.baidu.com/it/u=2414202553,3412755831&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
 		owner: jinhui,
 		desc: "Discuss about law",
-		createdOn: "2017-06-06"
+		createdOn: "2017-06-06",
+		members: [jinhui, yuandong, realLi]
+	},
+	{
+		name: "LGBTQ+ Connect DEV group chat",
+		pic: "https://cdn-icons-png.flaticon.com/512/2620/2620829.png",
+		owner: jinhui,
+		desc: "A awesome forum while developing the LGBTQ+Connect APP",
+		createdOn: "2017-06-06",
+		members: [jinhui, yuandong, realLi]
 	},
 ]
 
@@ -124,4 +134,4 @@ export const convsStore = createStore<Conversation[]>(conversationList)
 export const titleSignal = createSignal<string>("LGBTQ+Connect")
 export const convIdxSignal = createSignal<number>(0)
 export const forumStore = createStore<Forum[]>(forums)
-// export const likedUsers = 
+export const friendsStore = createStore<User[]>([yuandong, realLi])

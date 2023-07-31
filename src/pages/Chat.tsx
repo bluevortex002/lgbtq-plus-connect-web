@@ -43,7 +43,7 @@ const ChatPage: Component = () => {
 											<span class="block ml-2 font-semibold text-gray-600">{conv.name}</span>
 											<span class="block ml-2 text-sm text-gray-600">{conv.lastTime}</span>
 										</div>
-										<span class="block ml-2 text-sm text-gray-600">{conv.messages[conv.messages.length - 1].message}</span>
+										<span class="block ml-2 text-sm text-gray-600">{conv.messages.length > 0 ? conv.messages[conv.messages.length - 1]?.message : ""}</span>
 									</div>
 								</a>}
 							</For>
