@@ -50,12 +50,12 @@ const ContactsPage: Component = () => {
 							<img src={usr.avatarUrl} />
 						</div>
 					</div>
-					<div class="flex flex-col justify-start pl-5">
+					<div class="flex flex-col flex-1 justify-start pl-5">
 						<span>{usr.nickname}</span>
 						<span>Bio: {usr.selfBioSex}</span>
 						<span>Psy: {usr.selfPsySex}</span>
 					</div>
-					<div class="pl-5 justify-self-end">
+					<div class="pl-5">
 						<Show when={usr.like}>
 							<svg class="w-9 h-9 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="#f05542">
 								<path d="M5.301 3.002c-.889-.047-1.759.247-2.404.893-1.29 1.292-1.175 3.49.26 4.926l.515.515L8.332 14l4.659-4.664.515-.515c1.435-1.437 1.55-3.634.26-4.926-1.29-1.292-3.483-1.175-4.918.262l-.516.517-.517-.517C7.098 3.438 6.19 3.049 5.3 3.002z"></path></svg>
