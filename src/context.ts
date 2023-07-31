@@ -1,7 +1,7 @@
 import { createSignal } from "solid-js";
 import { createStore } from "solid-js/store";
 
-export type SexOptions = "male" | "female" | "both"
+export type SexOptions = "MALE" | "FEMALE" | "BOTH"
 
 export interface User {
 	email?: string,
@@ -17,6 +17,7 @@ export interface User {
 	avatarUrl?: string,
 	iLikeIt?: boolean
 	itLikeMe?: boolean,
+	distance?: number
 }
 
 export interface Conversation {
@@ -33,6 +34,14 @@ export interface Message {
 	message: string,
 }
 
+export interface Forum {
+	name: string,
+	pic: string,
+	owner: User,
+	desc: string,
+	createdOn: string,
+}
+
 const yuandong: User = {
 	email: "yuandong.li@hsbc.com",
 	nickname: "Yuandong",
@@ -40,10 +49,10 @@ const yuandong: User = {
 	userId: "yuandong",
 	password: "xxxxxxxxxxxxxxx",
 	description: "a developer in Traded Risk",
-	selfBioSex: "male",
-	selfPsySex: "male",
-	friendBioSex: "female",
-	friendPsySex: "female",
+	selfBioSex: "MALE",
+	selfPsySex: "MALE",
+	friendBioSex: "FEMALE",
+	friendPsySex: "FEMALE",
 	avatarUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F529b85ce-a054-4463-ba9f-fe1f598e6c3f%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1693050304&t=854e46de064da36933da5d58f8017078"
 }
 
@@ -54,24 +63,24 @@ const realLi: User = {
 	userId: "real",
 	password: "xxxxxxxxxxxxx",
 	description: "a developer in MSS",
-	selfBioSex: "male",
-	selfPsySex: "male",
-	friendBioSex: "female",
-	friendPsySex: "female",
+	selfBioSex: "MALE",
+	selfPsySex: "MALE",
+	friendBioSex: "FEMALE",
+	friendPsySex: "FEMALE",
 	avatarUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2Fbcb083cb-0490-4084-b870-72b5cd06fc46%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1693050304&t=3bcb9950e858016eea0a4fa724e26860"
 }
 
-const jinhui: User = {
+export const jinhui: User = {
 	email: "jin.hui.zhang@hsbc.com",
 	nickname: "Jinhui",
 	username: "jinhui",
-	userId: "jinhui",
+	userId: "0a474821-4e02-4535-a19f-e9bbef8f9cb8",
 	password: "xxxxxxxxxxx",
 	description: "a developer in MSS Tooling",
-	selfBioSex: "male",
-	selfPsySex: "male",
-	friendBioSex: "female",
-	friendPsySex: "female",
+	selfBioSex: "MALE",
+	selfPsySex: "MALE",
+	friendBioSex: "FEMALE",
+	friendPsySex: "FEMALE",
 	avatarUrl: "https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F74ecc700-cd6f-4f7d-b44d-231ae09167ff%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1693050304&t=773c92062647f813c6f1df19f3e91339"
 }
 
@@ -100,9 +109,19 @@ const conversationList = [
 	},
 ]
 
+const forums: Forum[] = [
+	{
+		name: "Legal counseling services",
+		pic: "https://img2.baidu.com/it/u=2414202553,3412755831&fm=253&fmt=auto&app=138&f=PNG?w=500&h=500",
+		owner: jinhui,
+		desc: "Discuss about law",
+		createdOn: "2017-06-06"
+	},
+]
+
 export const userSignal = createSignal<User>(jinhui)
 export const convsStore = createStore<Conversation[]>(conversationList)
-
 export const titleSignal = createSignal<string>("LGBTQ+Connect")
-
 export const convIdxSignal = createSignal<number>(0)
+export const forumStore = createStore<Forum[]>(forums)
+// export const likedUsers = 

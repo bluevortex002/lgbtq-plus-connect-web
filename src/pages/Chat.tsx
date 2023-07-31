@@ -27,7 +27,7 @@ const ChatPage: Component = () => {
 						</div>
 					</div>
 
-					<ul class="overflow-auto h-[32rem]">
+					<ul class="overflow-auto">
 						<h2 class="my-2 mb-2 ml-2 text-lg text-gray-600">Conversations</h2>
 						<li>
 							<For each={conversations}>

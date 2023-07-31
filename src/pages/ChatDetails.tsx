@@ -9,9 +9,11 @@ const ChatDetailsPage: Component = () => {
 	const [convIdx, setConvIdx] = convIdxSignal
 	const [user, setUser] = userSignal
 	const [convs, setConvs] = convsStore
-
-
 	const navigate = useNavigate()
+
+	if (user() === undefined) {
+		navigate("/signup", { replace: true });
+	}
 
 	const colorList = [
 		"chat-bubble chat-bubble-primary drop-shadow-md",
@@ -46,12 +48,12 @@ const ChatDetailsPage: Component = () => {
 					{
 						(msg) => {
 
-							return <div class={msg.sender.userId === user().userId ? "chat chat-end" : "chat chat-start"}>
+							return <div class={msg.sender.username === user()!.username ? "chat chat-end" : "chat chat-start"}>
 								<div class="chat-image avatar">
 									<div class="w-10 rounded-lg">
 										<img src={msg.sender.avatarUrl} />
 									</div>
-								</div>
+									s</div>
 								<div class="chat-header">
 									{msg.sender.nickname}
 									<time class="text-xs opacity-50 pl-1">{msg.time}</time>
@@ -93,7 +95,7 @@ const ChatDetailsPage: Component = () => {
 						onClick={(ev) => {
 							let newMsg: Message = {
 								time: Date.now().toString(),
-								sender: user(),
+								sender: user()!,
 								message: currInput(),
 							}
 							setConvs(convIdx(), "messages", convs[convIdx()].messages.length, newMsg)

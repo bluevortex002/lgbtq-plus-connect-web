@@ -21,6 +21,9 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
-    "solid-js": "^1.7.6"
+    "@types/superagent": "^4.1.18",
+    "human-names": "^1.0.12",
+    "solid-js": "^1.7.6",
+    "superagent": "^8.0.9"
   }
 }
