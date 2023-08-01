@@ -6,20 +6,45 @@ const SettingsPage: Component = () => {
 
 	const [user, setUser] = userSignal
 
-	return <div class="container flex flex-col w-full justify-center">
-		<div class="avatar flex justify-center items-center mt-20 mx-20 mb-10">
-			<div class="w-64 rounded-full">
-				<img src={user().avatarUrl} />
+	return <div class="container ">
+		<div class="card card-side card-compact shadow-xl">
+			<figure >
+				<div class="rounded-full">
+					<img class="max-w-[180px] h-[auto]" src={user().avatarUrl} />
+			
+			</div></figure>
+			<div class="card-body">
+				<h2 class="card-title">{user().nickname}</h2>
+				<div class="card-actions justify-end">
+					<div class="grid grid-cols-2 gap-2">
+						<button class="btn">
+							Self Bio Sex
+							<div class="badge">{user().selfBioSex}</div>
+						</button>
+						<button class="btn">
+							Self Bio Sex
+							<div class="badge badge-secondary">{user().selfPsySex}</div>
+						</button>
+						<button class="btn">
+							Friend Bio Sex
+							<div class="badge">{user().friendBioSex}</div>
+						</button>
+						<button class="btn">
+							Friend Psy Sex
+							<div class="badge badge-secondary">{user().friendPsySex}</div>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-		<span class="text-center text-xl">{user().nickname}</span>
-		<div class="grid grid-cols-2 px-2 gap-2">
-			<span class="text-center h-10 shadow-md rounded-md bg-gray-100 hover:bg-white">Self Bio Sex: {user().selfBioSex}</span>
-			<span class="text-center h-10 shadow-md rounded-md bg-gray-100 hover:bg-white">Self Bio Sex: {user().selfPsySex}</span>
-			<span class="text-center h-10 shadow-md rounded-md bg-gray-100 hover:bg-white">Friend Bio Sex: {user().friendBioSex}</span>
-			<span class="text-center h-10 shadow-md rounded-md bg-gray-100 hover:bg-white">Friend Psy Sex: {user().friendPsySex}</span>
-			<button class="h-[8rem] rounded-2xl bg-blue-400 text-white shadow-md hover:bg-blue-300">Download key pair</button>
-			<button class="h-[8rem] rounded-2xl bg-blue-400 text-white shadow-md hover:bg-blue-300">Download chat history</button>
+		<div class="card">
+			<div class="card-body text-center">
+				<h2 class="card-title">Download</h2>
+				<div class="card-actions justify-end">
+					<button class="btn btn-primary">key pair</button>
+					<button class="btn btn-primary">chat history</button>
+				</div>
+			</div>
 		</div>
 		<div class="grid grid-cols-1 mt-5 gap-y-3">
 			<div class="flex flex-row justify-around">
